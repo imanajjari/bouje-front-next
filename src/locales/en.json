@@ -1,0 +1,232 @@
+{
+  "meta": {
+      "title": "فروشگاه بوج - محصولات خاص",
+      "description": "بهترین تجربه خرید آنلاین از برندهای برتر در فروشگاه بوج."
+    },
+  "home": {
+    "category": "Shop by Category",
+    "suggestions": "You Might Also Like",
+    "bouje-blog": "Bouje Services",
+    "read-more": "Read More",
+    "home-title": "Home | Bouje – Luxury Accessories Store",
+    "home-description": "Discover the latest luxury collections and products from Bouje with the best prices and exclusive services.",
+    "design-your-bag": "Design Your Dream Bag",
+    "mothers-day-gift": "Mother's Day Gift",
+    "shop-the-collection": "Shop the Collection",
+    "customize": "Customize",
+    "customize-desc": "Personalize select bags, belts, and accessories with your initials.",
+    "appointment": "Book an Appointment",
+    "appointment-desc": "Enjoy personalized service at your preferred boutique by booking in advance.",
+    "pickup": "In-store Pickup",
+    "pickup-desc": "Order online and collect your items from the boutique of your choice.",
+    "hero-alt": "Main Store Banner",
+    "view-button": "View",
+    "category-men": "Men",
+    "category-women": "Women",
+    "category-accessories": "Accessories",
+    "shop-now": "Shop Now"
+  }
+  
+  ,
+  "navbar": {
+    "index": "Home",
+    "shop": "Shop",
+    "magazine": "Magazine",
+    "about-us": "About Us",
+    "contact-us": "Contact Us",
+    "more": "more"
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact us",
+      "description": "We are always listening to you; contact us regarding any issue."
+    },
+    "contactPlane": {
+      "title": "Contact Details",
+      "address": "Address",
+      "email": "Email",
+      "phone": "Phone Number"
+    },
+    "OurLocation": "Our Location",
+    "OurWorkingHours": "Our Business Hours",
+    "form": {
+      "title": "Contact Us Form",
+      "fullNameLbl": "Full Name",
+      "emailLbl": "Email",
+      "messageLbl": "Message",
+      "fullNamePH": "Your first and last name",
+      "emailPH": "example@email.com",
+      "messagePH": "Your message text",
+      "txtButton": "Send Message"
+    },
+    "toast": {
+      "incomplete": "Please fill in all required fields.",
+      "success": "Message sent successfully!",
+      "error": "Failed to send your message."
+    }
+  },
+
+  "productDetail": {
+    "hero": {
+      "ColorSelection": "Choose color:",
+      "SizeSelection": "Select size:",
+      "stock": "stock",
+      "SizeGuide": "Size Guide",
+      "AddToCart": "Add to Cart"
+    },
+    "viewMedia":"view media",
+    "productID":"Product ID",
+    "productDetails":"Product Details",
+    "youWillDefinitelyLoveIt":"you will definitely love it."
+  },
+
+  "magazine": {
+    "category": "category",
+    "searchPlaceholder": "What are you looking for?",
+    "MustRead":"Must Read",
+    "searchResultsFor": "Search results for: {query}",
+    "titleText":"Stay up to date with the latest fashion news with Bojo Magazine",
+    "search":"search",
+    "StayWithUs":"Stay with us",
+    "description": "بهترین تجربه خرید آنلاین از برندهای برتر در فروشگاه بوج.",
+    "tag": "برچسب",
+  "tagDescription": "نمایش مقالات مرتبط با برچسب '{tag}'",
+  "pageTitle": "Bouje Magazine - Fashion, Lifestyle & Culture",
+    "pageDescription": "Discover the latest articles, trends and features from Bouje Magazine.",
+    "searchResultsDesc": "See all results related to \"{{query}}\" in our magazine.",
+    "topics":"topics",
+    "magazineHome": "Magazine"
+  },
+  "checkout":{
+    "title": "📝 Checkout Information",
+    "phone": "Phone Number",
+    "address": "Full Address",
+    "postal": "Postal Code",
+    "landline": "Landline",
+    "submit": "Submit and Continue",
+    "submitSuccess": "Order submitted. Awaiting payment...",
+    "submitError": "Failed to submit order or payment"
+  },
+"footer": {
+  "quote": "Quality remains long after the price is forgotten.",
+  "links": [
+    {
+      "title": "About Us",
+      "items": [
+        { "label": "Our Brand", "href": "/about-us" },
+        { "label": "Contact Us", "href": "/contact-us" }
+      ]
+    },
+    {
+      "title": "Services",
+      "items": [
+        { "label": "Latest News", "href": "/magazine" },
+        { "label": "Our Products", "href": "/products" }
+      ]
+    },
+    {
+      "title": "Support",
+      "items": [
+        { "label": "Track Order", "href": "/contact-us" },
+        { "label": "Help", "href": "/contact-us" }
+      ]
+    }
+  ],
+  "legal": {
+    "text": "© All rights reserved for the brand."
+  }
+},
+
+  "magazineDetail":{
+    "siteName": "Luxury Magazine",
+    "home": "Home",
+    "magazine": "Magazine",
+    "viewsRead": " read",
+    "likes": "likes",
+    "shares": "shares",
+    "gallery": "Gallery",
+    "popularTags": "Popular Tags",
+    "lastUpdated": "Last updated",
+    "allRightsReserved": "All rights reserved",
+    "details": {
+      "footerNote": "This article represents the views and research of our editorial team. For the latest updates and information, please visit the official brand websites."
+    },
+    "author": {
+      "about": "About the Author",
+      "followOn": "Follow on",
+      "articles": "articles",
+      "moreArticles": "More articles by"
+    },
+    "share": {
+      "title": "Share this article",
+      "facebook": "Share on Facebook",
+      "twitter": "Share on Twitter",
+      "linkedin": "Share on LinkedIn",
+      "pinterest": "Share on Pinterest",
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied to clipboard!"
+    },
+    "comments": {
+      "title": "Comments",
+      "writeComment": "Write a comment",
+      "postComment": "Post Comment",
+      "replyTo": "Reply to",
+      "showReplies": "Show replies",
+      "hideReplies": "Hide replies",
+      "loadMore": "Load more comments",
+      "noComments": "No comments yet. Be the first to comment!",
+      "placeholder": "Share your thoughts about this article...",
+      "name": "Name",
+      "email": "Email",
+      "required": "Required"
+    },
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Get the latest luxury fashion news and exclusive content delivered to your inbox.",
+      "placeholder": "Enter your email address",
+      "subscribe": "Subscribe",
+      "success": "Thank you for subscribing!",
+      "error": "Please enter a valid email address."
+    },
+    "relatedArticles": {
+      "title": "Related Articles",
+      "readMore": "Read More",
+      "category": "Category"
+    },
+    "tableOfContents": {
+      "title": "Table of Contents",
+      "showContents": "Show Contents",
+      "hideContents": "Hide Contents"
+    },
+    "readingProgress": {
+      "readingProgress": "Reading Progress"
+    },
+    "navigation": {
+      "previousArticle": "Previous Article",
+      "nextArticle": "Next Article",
+      "backToMagazine": "Back to Magazine"
+    },
+    "meta": {
+      "category": "Category",
+      "publishedOn": "Published on",
+      "author": "By",
+      "readTime": "reading time",
+      "tags": "Tags"
+    }
+  },
+
+    "Newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest fashion insights and luxury stories in your inbox.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe",
+      "submitting": "Subscribing...",
+      "successTitle": "Successfully Subscribed!",
+      "successMessage": "Thank you for subscribing to our newsletter.",
+      "errorTitle": "Error",
+      "errorMessage": "Subscription failed. Please try again."
+    }
+  
+  
+
+}

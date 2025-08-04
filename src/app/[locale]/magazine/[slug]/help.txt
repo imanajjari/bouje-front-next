@@ -1,0 +1,80 @@
+async function getArticleData(slug: string, locale: string) {
+  // Mock data - replace with actual CMS/database call
+  const mockData = {
+    id: '1',
+    slug: slug,
+    title: 'The Art of Luxury: Gucci\'s Timeless Heritage in Modern Fashion',
+    excerpt: 'Discover how Gucci continues to redefine luxury fashion while honoring its century-old heritage, blending traditional craftsmanship with contemporary innovation.',
+    content: `
+      <h2 id="heritage">A Century of Heritage</h2>
+      <p>Founded in Florence in 1921, Gucci has established itself as one of the world's leading luxury fashion houses. The brand's commitment to quality and Italian craftsmanship has remained unwavering throughout its evolution.</p>
+      
+      <h2 id="innovation">Innovation Meets Tradition</h2>
+      <p>Today's Gucci seamlessly blends traditional techniques with modern innovation, creating pieces that are both timeless and contemporary. Each collection tells a story of artistic vision and meticulous attention to detail.</p>
+      
+      <h2 id="sustainability">Sustainable Luxury</h2>
+      <p>The future of luxury lies in sustainability. Gucci's commitment to environmental responsibility includes innovative materials, circular design principles, and transparent supply chain practices.</p>
+      
+      <blockquote>
+        <p>"Luxury is not about showing off. It's about quality, craftsmanship, and the story behind each piece."</p>
+        <cite>— Alessandro Michele, Former Creative Director</cite>
+      </blockquote>
+      
+      <h2 id="global-impact">Global Cultural Impact</h2>
+      <p>Beyond fashion, Gucci has become a cultural phenomenon, influencing art, music, and lifestyle across generations. The brand's collaborations with artists and celebrities continue to shape contemporary culture.</p>
+    `,
+    featuredImage: '/images/magazine/gucci-heritage.webp',
+    gallery: [
+      '/images/magazine/gallery-1.webp',
+      '/images/magazine/gallery-2.webp',
+      '/images/magazine/gallery-3.webp',
+    ],
+    video: '/videos/gucci-behind-scenes.mp4',
+    category: 'Fashion Heritage',
+    tags: ['Gucci', 'Luxury Fashion', 'Italian Craftsmanship', 'Heritage', 'Innovation'],
+    author: {
+      id: '1',
+      name: 'Sophia Martinez',
+      bio: 'Fashion historian and luxury brand specialist with over 15 years of experience covering haute couture and heritage brands.',
+      avatar: '/images/authors/sophia-martinez.webp',
+      social: {
+        twitter: 'sophiamartinez',
+        instagram: 'sophia_fashion',
+        linkedin: 'sophia-martinez-fashion'
+      }
+    },
+    publishedAt: '2025-06-24T10:00:00Z',
+    updatedAt: '2025-06-24T15:30:00Z',
+    readingTime: 8,
+    likes: 1247,
+    shares: 89,
+    comments: 23,
+    relatedArticles: [
+      {
+        id: '2',
+        title: 'The Evolution of Italian Leather Craftsmanship',
+        slug: 'italian-leather-evolution',
+        image: '/images/magazine/related-1.webp',
+        category: 'Craftsmanship'
+      },
+      {
+        id: '3',
+        title: 'Sustainable Fashion: The New Luxury Standard',
+        slug: 'sustainable-luxury-fashion',
+        image: '/images/magazine/related-2.webp',
+        category: 'Sustainability'
+      }
+    ]
+  };
+  
+  return mockData;
+}
+
+async function getAllArticleSlugs() {
+  // Mock implementation - replace with actual data fetching
+  return [
+    { slug: 'gucci-heritage-modern-fashion' },
+    { slug: 'italian-leather-evolution' },
+    { slug: 'sustainable-luxury-fashion' }
+  ];
+}
