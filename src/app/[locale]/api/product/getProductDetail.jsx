@@ -1,6 +1,6 @@
 export const getProductDetail = async (slug) => {
     try {
-      const response = await fetch(`https://bouje-back.onrender.com/api/products/products/${slug}/`, {
+      const response = await fetch(`https://188.213.199.87:8000/api/products/products/${slug}/`, {
         method: "GET",
         headers: {
           "Accept": "application/json",

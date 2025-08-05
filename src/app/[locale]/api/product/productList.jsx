@@ -1,6 +1,6 @@
 // لیست محصولات
 export const listProducts = async () => {
-    const url = "https://bouje-back.onrender.com/api/products/products/";
+    const url = "https://188.213.199.87:8000/api/products/products/";
   
     try {
       const response = await fetch(url, {
