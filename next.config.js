@@ -22,6 +22,12 @@ module.exports = withNextIntl({
         hostname: 'bouje-back.onrender.com',
         pathname: '/media/**', // اگر تصاویر از مسیر media می‌آیند
       },
+      {
+        protocol: 'http',
+        hostname: '188.213.199.87',
+        port: '8000',
+        pathname: '/media/**',
+      },
     ],
   },
   eslint: {
