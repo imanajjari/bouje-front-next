@@ -1,6 +1,8 @@
+import { API_BASE_URL } from "../config";
+
 // لیست محصولات
 export const listProducts = async () => {
-    const url = "http://127.0.0.1:8000/api/products/products/";
+    const url = `${API_BASE_URL}/api/products/products/`;
   
     try {
       const response = await fetch(url, {

@@ -1,12 +1,13 @@
  // /src/services/cart/cartService.js
 
 import { authFetch } from "../../app/[locale]/api/auth/auth";
+import { API_BASE_URL } from "../../app/[locale]/api/config";
 
-const API_BASE = "http://127.0.0.1:8000/api";
+
 
 // get carts
 export async function getCart() {
-    const res = await authFetch(`${API_BASE}/cart/`, {
+    const res = await authFetch(`${API_BASE_URL}/cart/`, {
       method: "GET",
     });
     return res.json();
@@ -14,7 +15,7 @@ export async function getCart() {
 
 // Add item to cart
 export async function addToCart(variantId, quantity) {
-  const res = await authFetch(`${API_BASE}/cart/add/`, {
+  const res = await authFetch(`${API_BASE_URL}/cart/add/`, {
     method: "POST",
     body: JSON.stringify({ variant_id: variantId, quantity }),
   });
@@ -23,7 +24,7 @@ export async function addToCart(variantId, quantity) {
 
 // Update item in cart
 export async function updateCart(variantId, quantity) {
-  const res = await authFetch(`${API_BASE}/cart/update/`, {
+  const res = await authFetch(`${API_BASE_URL}/cart/update/`, {
     method: "PUT",
     body: JSON.stringify({ variant_id: variantId, quantity }),
   });
@@ -32,7 +33,7 @@ export async function updateCart(variantId, quantity) {
 
 // Remove item from cart
 export async function removeFromCart(variantId) {
-  const res = await authFetch(`${API_BASE}/cart/remove/`, {
+  const res = await authFetch(`${API_BASE_URL}/cart/remove/`, {
     method: "DELETE",
     body: JSON.stringify({ variant_id: variantId }),
   });
@@ -41,7 +42,7 @@ export async function removeFromCart(variantId) {
 
 // Count of Cart Item
 export async function getCartItemCount() {
-  const res = await authFetch(`${API_BASE}/cart/`, {
+  const res = await authFetch(`${API_BASE_URL}/cart/`, {
     method: "GET",
   });
 

@@ -1,6 +1,8 @@
+import { API_BASE_URL } from "../config";
+
 export const getProductDetail = async (slug) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/products/products/${slug}/`, {
+      const response = await fetch(`${API_BASE_URL}/api/products/products/${slug}/`, {
         method: "GET",
         headers: {
           "Accept": "application/json",
