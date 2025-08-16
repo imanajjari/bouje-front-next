@@ -2,7 +2,7 @@
 
 import { authFetch } from "../../app/[locale]/api/auth/auth";
 
-const API_BASE = "http://localhost:8000/api";
+const API_BASE = "http://127.0.0.1:8000/api";
 
 // get carts
 export async function getCart() {

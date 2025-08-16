@@ -230,7 +230,7 @@ export default function Header({
   {/* پروفایل */}
   <button
     onClick={handleProfileClick}
-    className="hover:opacity-70 transition hidden md:inline-flex cursor-pointer"
+    className="hover:opacity-70 transition md:inline-flex cursor-pointer"
     aria-label="Profile"
   >
     <User size={20} color={scrolled ? "#000000FF" : iconColor} />

@@ -1,6 +1,6 @@
 // لیست محصولات
 export const listProducts = async () => {
-    const url = "http://188.213.199.87:8000/api/products/products/";
+    const url = "http://127.0.0.1:8000/api/products/products/";
   
     try {
       const response = await fetch(url, {

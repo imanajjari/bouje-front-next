@@ -1,6 +1,6 @@
   // بررسی کد اصالت
   export const verifyAuthenticityCode = async (code) => {
-    const url = `http://188.213.199.87:8000/api/verify/?code=${code}`;
+    const url = `http://127.0.0.1:8000/api/verify/?code=${code}`;
   
     try {
       const response = await fetch(url, {

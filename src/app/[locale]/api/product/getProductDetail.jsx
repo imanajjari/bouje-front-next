@@ -1,6 +1,6 @@
 export const getProductDetail = async (slug) => {
     try {
-      const response = await fetch(`http://188.213.199.87:8000/api/products/products/${slug}/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/products/products/${slug}/`, {
         method: "GET",
         headers: {
           "Accept": "application/json",
