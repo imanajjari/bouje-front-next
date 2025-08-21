@@ -135,12 +135,17 @@ export default function ProductBuyBox({
         </div>
       )}
 
-      {/* نمایش موجودی */}
-      {stock !== null && (
-        <p className={`text-sm mt-1 ${stock < 5 ? 'text-red-500' : 'text-gray-700'}`}>
-          {t('hero.stock')} : {stock}
-        </p>
-      )}
+{/* نمایش موجودی */}
+{stock !== null && stock < 10 && (
+  <p
+    className={`text-sm mt-1 ${
+      stock < 4 ? "text-red-500" : "text-gray-700"
+    }`}
+  >
+    {t("hero.stock")} : {stock}
+  </p>
+)}
+
 
       {/* انتخاب تعداد */}
       {stock !== null && (

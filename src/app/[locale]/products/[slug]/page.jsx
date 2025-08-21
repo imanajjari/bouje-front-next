@@ -99,8 +99,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white" dir="rtl">
       <Header logoAnimation={false} iconColor="#000000" stickOnScrollOnly={true} />
 {/* Reading Progress Indicator */}
-            <ReadingProgress />
-      <div className="mt-12 bg-[#E7E7E7] py-6">
+      <div className=" bg-[#E7E7E7] py-6">
         <ProductShowcaseBanner images={product.images}>
           <ProductBuyBox
             title={product.name}
