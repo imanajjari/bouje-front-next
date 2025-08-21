@@ -1,40 +1,57 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useEffect, useMemo, useState } from 'react';
 import { IoClose, IoPlay, IoPause } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
 
 const MediaModal = ({ mediaItems, buttonLabel = 'نمایش مدیا' }) => {
+  // 1) فallback امن برای ورودی
+  const items = useMemo(
+    () => (Array.isArray(mediaItems) ? mediaItems : []),
+    [mediaItems]
+  );
+
+  // 2) فقط مدیای قابل‌نمایش داخل مودال
+  const visualItems = useMemo(
+    () => items.filter((it) => it && (it.type === 'image' || it.type === 'video')),
+    [items]
+  );
+
+  // اگه هیچ آیتم قابل‌نمایشی نداریم، اصلاً چیزی رندر نکن
+  if (visualItems.length === 0) return null;
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const hasVisualMedia = mediaItems.some(
-    (item) => item.type === 'image' || item.type === 'video'
-  );
+  // 3) وقتی لیست تغییر کرد، ایندکس و پخش ریست بشه
+  useEffect(() => {
+    setCurrentIndex(0);
+    setIsPlaying(false);
+  }, [visualItems]);
 
-  if (!hasVisualMedia) return null;
-
-  const currentMedia = mediaItems[currentIndex];
+  // 4) جلوگیری از out-of-range
+  const safeIndex = Math.min(Math.max(currentIndex, 0), visualItems.length - 1);
+  const currentMedia = visualItems[safeIndex];
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % mediaItems.length);
+    setCurrentIndex((prev) => (prev + 1) % visualItems.length);
     setIsPlaying(false);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
+    setCurrentIndex((prev) => (prev - 1 + visualItems.length) % visualItems.length);
     setIsPlaying(false);
   };
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+  const togglePlay = () => setIsPlaying((p) => !p);
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: handleNext,
     onSwipedRight: handlePrev,
     preventScrollOnSwipe: true,
-    trackMouse: true, // برای تست با موس
+    trackMouse: true,
   });
 
   return (
@@ -51,11 +68,9 @@ const MediaModal = ({ mediaItems, buttonLabel = 'نمایش مدیا' }) => {
 
       {/* مدال */}
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && currentMedia && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#0000003b] backdrop-blur-sm bg-opacity-80"
           >
             <motion.div
@@ -81,9 +96,11 @@ const MediaModal = ({ mediaItems, buttonLabel = 'نمایش مدیا' }) => {
                     className="w-full h-auto max-h-[70vh] object-contain"
                   />
                 )}
+
                 {currentMedia.type === 'video' && (
                   <div className="relative">
                     <video
+                      key={currentMedia.image /* تعویض سورس => ریست پلیر */}
                       src={currentMedia.image}
                       autoPlay={isPlaying}
                       controls={false}
@@ -98,38 +115,18 @@ const MediaModal = ({ mediaItems, buttonLabel = 'نمایش مدیا' }) => {
                     </button>
                   </div>
                 )}
-                {currentMedia.type === 'file' && (
-                  <div className="flex flex-col items-center justify-center h-[50vh] p-6">
-                    <p className="text-lg font-roboto-mono text-gray-800 mb-4">
-                      {currentMedia.name || 'File'}
-                    </p>
-                    <a
-                      href={currentMedia.image}
-                      download
-                      className="px-6 py-3 bg-black text-white font-inter uppercase tracking-wide hover:bg-gray-800 transition"
-                    >
-                      Download File
-                    </a>
-                  </div>
-                )}
               </div>
 
               {/* ناوبری پایین */}
-              {mediaItems.length > 1 && (
+              {visualItems.length > 1 && (
                 <div className="flex justify-between items-center p-4 bg-gray-100">
-                  <button
-                    onClick={handlePrev}
-                    className="text-gray-600 hover:text-black font-inter uppercase tracking-wide"
-                  >
+                  <button onClick={handlePrev} className="text-gray-600 hover:text-black font-inter uppercase tracking-wide">
                     قبلی
                   </button>
                   <span className="font-roboto-mono text-gray-600">
-                    {currentIndex + 1} / {mediaItems.length}
+                    {safeIndex + 1} / {visualItems.length}
                   </span>
-                  <button
-                    onClick={handleNext}
-                    className="text-gray-600 hover:text-black font-inter uppercase tracking-wide"
-                  >
+                  <button onClick={handleNext} className="text-gray-600 hover:text-black font-inter uppercase tracking-wide">
                     بعدی
                   </button>
                 </div>
@@ -143,4 +140,3 @@ const MediaModal = ({ mediaItems, buttonLabel = 'نمایش مدیا' }) => {
 };
 
 export default MediaModal;
-
