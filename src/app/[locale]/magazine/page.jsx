@@ -64,7 +64,7 @@ export default async function MagazinePage(context) {
   return (
     <>
       <Header logoAnimation={false} iconColor="#000000" stickOnScrollOnly={true} />
-      <ReadingProgress />
+      {/* <ReadingProgress /> */}
 
       <main className="pt-20">
         <SearchBar locale={locale} searchParams={searchParams} />
