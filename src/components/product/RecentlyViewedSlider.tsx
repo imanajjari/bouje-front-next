@@ -3,7 +3,7 @@
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 type ViewedItem = {
   title: string;
@@ -70,11 +70,8 @@ export default function RecentlyViewedSlider({
 
   useEffect(() => {
     if (!autoPlay) return;
-
     const interval = setInterval(() => {
-      if (instanceRef.current) {
-        instanceRef.current.next();
-      }
+      instanceRef.current?.next();
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
@@ -90,24 +87,25 @@ export default function RecentlyViewedSlider({
       </div>
 
       <div ref={sliderRef} className="keen-slider">
-      <div  className="hidden md:flex keen-slider__slide  flex-col items-center justify-center space-y-3 border-r border-gray-300">
+        {/* اسلاید اول ثابت (برای دسکتاپ) */}
+        <div className="hidden md:flex keen-slider__slide flex-col items-center justify-center space-y-3 border-r border-gray-300">
+          <h3 className="text-center text-sm text-gray-700">موارد مشاهده شده اخیر</h3>
+          <p className="text-sm text-gray-500">محصولاتی که اخیراً مشاهده کرده‌اید.</p>
+        </div>
 
-
-              <h3 className="text-center text-sm text-gray-700">موارد مشاهده شده اخیر</h3>
-              <p className="text-sm text-gray-500">محصولاتی که اخیراً مشاهده کرده‌اید.</p>
-
-          </div>
-          
         {items.map((item, index) => (
-            
-            <div
+          <div
             key={index}
-            className={`keen-slider__slide  flex flex-col items-center justify-center ${index !== items.length - 1 ? 'border-r border-gray-300' : ''}`}
+            className={`keen-slider__slide flex flex-col items-center justify-center ${
+              index !== items.length - 1 ? 'border-r border-gray-300' : ''
+            }`}
           >
-            <div className="aspect-square w-full overflow-hidden flex items-center justify-center bg-white">
-              <img
+            <div className="aspect-square w-full overflow-hidden flex items-center justify-center bg-white relative">
+              <Image
                 src={item.image}
                 alt={item.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 25vw"
                 className="object-contain max-h-72"
               />
             </div>

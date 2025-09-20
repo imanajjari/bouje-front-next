@@ -5,7 +5,7 @@ module.exports = withNextIntl({
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '127.0.0.1',
+        hostname: '188.121.100.227',
         port: '8000',
         pathname: '/media/**',
       },
@@ -24,7 +24,7 @@ module.exports = withNextIntl({
       },
       {
         protocol: 'http',
-        hostname: '188.213.199.87',
+        hostname: '188.121.100.227',
         port: '8000',
         pathname: '/media/**',
       },

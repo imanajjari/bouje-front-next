@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function TeamSection({ members = [], footer }) {
   return (
@@ -24,11 +25,14 @@ export default function TeamSection({ members = [], footer }) {
               viewport={{ once: true }}
               className="bg-white border border-gray-200 rounded-xl shadow-md p-6 hover:shadow-xl transition"
             >
-              <img
-                src={m.avatar}
-                alt={m.full_name}
-                className="w-32 h-32 rounded-full object-cover border-4 border-black mx-auto"
-              />
+              <div className="w-32 h-32 mx-auto relative">
+                <Image
+                  src={m.avatar}
+                  alt={m.full_name}
+                  fill     // ✅ تصویر کل کانتینر رو پر می‌کنه
+                  className="rounded-full object-cover border-4 border-black"
+                />
+              </div>
 
               <div className="text-center mt-6">
                 <h3 className="text-xl font-bold">{m.full_name}</h3>

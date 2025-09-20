@@ -138,7 +138,7 @@ export default function CategoryList({ categories = [], locale = "fa" ,title="Co
                 <Search className="h-12 w-12 text-gray-300 mx-auto" />
                 <h3 className="text-lg font-light text-gray-600">موردی یافت نشد</h3>
                 <p className="text-sm text-gray-500 max-w-md mx-auto">
-                  هیچ مجموعه‌ای با عبارت "{searchTerm}" یافت نشد. لطفاً کلمه کلیدی دیگری امتحان کنید.
+                  هیچ مجموعه‌ای با عبارت &quot;{searchTerm}&quot; یافت نشد. لطفاً کلمه کلیدی دیگری امتحان کنید.
                 </p>
               </div>
             </div>

@@ -3,8 +3,8 @@
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 interface images {
   image_url: string;
@@ -43,17 +43,8 @@ export default function ProductShowcaseBanner({ images, children }: ProductShowc
     },
   });
 
-  const goPrev = () => {
-    if (instanceRef.current) {
-      instanceRef.current.prev();
-    }
-  };
-
-  const goNext = () => {
-    if (instanceRef.current) {
-      instanceRef.current.next();
-    }
-  };
+  const goPrev = () => instanceRef.current?.prev();
+  const goNext = () => instanceRef.current?.next();
 
   return (
     <div className="relative w-full">
@@ -62,15 +53,16 @@ export default function ProductShowcaseBanner({ images, children }: ProductShowc
           <div
             key={index}
             className="keen-slider__slide"
-            style={{
-              transition: 'opacity 0.5s',
-            }}
+            style={{ transition: 'opacity 0.5s' }}
           >
-            <div className="aspect-square w-full overflow-hidden flex justify-center">
-              <img
+            <div className="aspect-square w-full overflow-hidden flex justify-center relative">
+              <Image
                 src={image.image_url}
                 alt={image.alt_text}
-                className="object-contain max-h-full"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain"
+                priority={index === 0} // اسلاید اول سریع‌تر لود بشه
               />
             </div>
           </div>
@@ -83,11 +75,10 @@ export default function ProductShowcaseBanner({ images, children }: ProductShowc
           {currentSlide + 1} / {images.length}
         </div>
       </div>
+
       <div className="mt-6 flex justify-center">
         {/* Center Fixed Content فقط موبایل */}
-        <div className="block md:hidden z-10">
-          {children}
-        </div>
+        <div className="block md:hidden z-10">{children}</div>
       </div>
 
       {/* Center Fixed Content فقط دسکتاپ */}

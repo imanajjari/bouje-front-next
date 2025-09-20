@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ProductionSection({ production }) {
   if (!production) return null;
@@ -30,9 +31,11 @@ export default function ProductionSection({ production }) {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <img
+          <Image
             src={image}
             alt={title}
+            width={600}       
+            height={400}
             className="rounded-xl shadow-xl border border-white/10"
           />
         </motion.div>
