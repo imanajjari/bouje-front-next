@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getPdfById } from "../../../../services/pdf/pdfService";
 import { useParams } from "next/navigation";
-import * as pdfjsLib from "pdfjs-dist/build/pdf";  // ⬅️ اینجا تغییر کرد
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";// ⬅️ esm import
 import { API_BASE_URL } from "../../api/config";
 
 import Header from "../../../../components/common/Header";

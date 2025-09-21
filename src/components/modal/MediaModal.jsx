@@ -6,27 +6,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
 import Image from 'next/image';
 
-type MediaItem =
-  | { type: 'image'; image: string; alt_text?: string }
-  | { type: 'video'; image: string; alt_text?: string };
 
-interface MediaModalProps {
-  mediaItems?: MediaItem[];
-  buttonLabel?: string;
-}
-
-const MediaModal: React.FC<MediaModalProps> = ({
+const MediaModal = ({
   mediaItems,
   buttonLabel = 'نمایش مدیا',
 }) => {
   // 1) فallback امن برای ورودی
-  const items = useMemo<MediaItem[]>(
+  const items = useMemo(
     () => (Array.isArray(mediaItems) ? mediaItems : []),
     [mediaItems]
   );
 
   // 2) فقط مدیای قابل‌نمایش داخل مودال
-  const visualItems = useMemo<MediaItem[]>(
+  const visualItems = useMemo(
     () => items.filter((it) => it && (it.type === 'image' || it.type === 'video')),
     [items]
   );
@@ -63,7 +55,7 @@ const MediaModal: React.FC<MediaModalProps> = ({
   // ناوبری با کیبورد وقتی مدال بازه
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
+    const onKey = (e) => {
       if (e.key === 'Escape') setIsOpen(false);
       if (e.key === 'ArrowRight') handleNext();
       if (e.key === 'ArrowLeft') handlePrev();
