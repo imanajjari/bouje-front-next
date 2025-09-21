@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getPdfById } from "../../../../services/pdf/pdfService";
 import { useParams } from "next/navigation";
-import * as pdfjsLib from "pdfjs-dist/webpack";
+import * as pdfjsLib from "pdfjs-dist/build/pdf";  // ⬅️ اینجا تغییر کرد
 import { API_BASE_URL } from "../../api/config";
 
 import Header from "../../../../components/common/Header";
@@ -17,7 +17,6 @@ export default function PdfViewerPage() {
   const [title, setTitle] = useState("");
   const viewerRef = useRef<HTMLDivElement | null>(null);
 
-  // 👇 تایپ دقیق پارامترها
   const { id, locale } = useParams<{ id: string; locale: string }>();
 
   useEffect(() => {
@@ -60,14 +59,10 @@ export default function PdfViewerPage() {
     <>
       <Header logoAnimation={false} iconColor="#000000" stickOnScrollOnly />
       <div className="max-w-4xl mx-auto pt-20 p-4">
+        <h1 className="text-xl font-bold mb-4">{title}</h1>
         <div ref={viewerRef} className="flex flex-col gap-6" />
       </div>
       <Footer />
     </>
   );
-  // return (
-  //   <>
-
-  //   </>
-  // );
 }

@@ -7,7 +7,7 @@ import {
 } from "../services/magazine/magazineService";
 
 // هر چند وقت یک‌بار سایت‌مپ دوباره ساخته شود (ثانیه)
-export const revalidate = 60 * 60; // 1h
+export const revalidate = 3600; // 1h
 
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
