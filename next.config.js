@@ -1,6 +1,7 @@
 const withNextIntl = require('next-intl/plugin')();
 
-module.exports = withNextIntl({
+/** @type {import('next').NextConfig} */
+const nextConfig = withNextIntl({
   images: {
     remotePatterns: [
       {
@@ -20,7 +21,7 @@ module.exports = withNextIntl({
       {
         protocol: 'https',
         hostname: 'bouje-back.onrender.com',
-        pathname: '/media/**', // اگر تصاویر از مسیر media می‌آیند
+        pathname: '/media/**',
       },
       {
         protocol: 'http',
@@ -33,4 +34,14 @@ module.exports = withNextIntl({
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  // ⬇️ این قسمت رو اضافه کن
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push("canvas"); // ⬅️ بگو canvas رو نادیده بگیره
+    }
+    return config;
+  },
 });
+
+module.exports = nextConfig;
