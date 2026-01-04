@@ -14,7 +14,7 @@ export function transformBlogPost(post, locale) {
     slug: post.slug,
     title: post.title,
     excerpt,
-    summary: post.summary ?? excerpt,
+    summary: (post.summary || excerpt || "").replace(/<[^>]*>/g, ""),
     content: post.content,
     featuredImage: post.media,
     video: post.file || "",

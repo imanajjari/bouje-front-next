@@ -1,18 +1,20 @@
 // src/i18n/request.js
-import { getRequestConfig } from 'next-intl/server';
+import {getRequestConfig} from "next-intl/server";
+import {supportedLocales, defaultLocale} from "./settings";
 
-const SUPPORTED_LOCALES = ['fa', 'en'];
+export default getRequestConfig(async ({locale}) => {
+  const resolvedLocale = supportedLocales.includes(locale) ? locale : defaultLocale;
 
-export default getRequestConfig(async ({ locale }) => {
-  if (!locale || !SUPPORTED_LOCALES.includes(locale)) {
-    console.warn(`⚠️ Unsupported or missing locale: ${locale}. Falling back to "fa".`);
-    locale = 'fa';
+  let messages;
+  try {
+    messages = (await import(`../locales/${resolvedLocale}.json`)).default;
+  } catch (e) {
+    messages = (await import(`../locales/${defaultLocale}.json`)).default;
   }
 
-  const messages = await import(`../locales/${locale}.json`).then((mod) => mod.default);
-
   return {
-    locale,
+    locale: resolvedLocale,
     messages
   };
 });
+

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 // app/[locale]/magazine/[slug]/page.tsx
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -99,15 +101,8 @@ export async function generateMetadata(context) {
 
 // Generate static params for better performance
 export async function generateStaticParams() {
-  // In production, fetch all article slugs from your CMS/database
-  const articles = await getAllArticleSlugs();
-  
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
+  return [];
 }
-
-
 
 async function getArticleData(slug, locale) {
   const raw = await fetchBlogPostBySlug(slug);
@@ -137,7 +132,7 @@ export default async function MagazineDetailPage(context) {
   ];
 
   const isRTL = params.locale === 'fa';
-
+  const plainSummary = (article?.summary || "").replace(/<[^>]*>/g, "");
   return (
     <>
     <Header logoAnimation={false} iconColor="#000000" stickOnScrollOnly={true} />
@@ -194,8 +189,10 @@ export default async function MagazineDetailPage(context) {
           </h1>
           
           <p className="text-lg lg:text-xl text-gray-600 leading-relaxed mb-6">
-            {article.summary}
+            {plainSummary} 
           </p>
+  
+        
           
           {/* Article Meta */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
@@ -215,7 +212,7 @@ export default async function MagazineDetailPage(context) {
           </div>
           
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-8">
             {article.tags?.map((tag) => (
               <Link
                 key={tag}

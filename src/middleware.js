@@ -1,40 +1,44 @@
-// middleware.js (در root پروژه)
-import { NextResponse } from 'next/server';
-import { supportedLocales } from './../src/i18n/settings';
+// src/middleware.js
+import { NextResponse } from "next/server";
+import { supportedLocales, defaultLocale } from "./i18n/settings";
 
 export function middleware(request) {
-  const pathname = request.nextUrl.pathname;
-  
-  // چک کردن اینکه آیا locale در path وجود دارد
-  const pathnameHasLocale = supportedLocales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
+  const { pathname } = request.nextUrl;
 
-  // اگر locale وجود ندارد، به en redirect کن
-  if (!pathnameHasLocale) {
-    // اگر path فقط / است، به /en redirect کن
-    if (pathname === '/') {
-      return NextResponse.redirect(new URL('/fa', request.url));
-    }
-    
-    // برای سایر pathهای نامعتبر، به صفحه 404 مربوط به en redirect کن
-    return NextResponse.redirect(new URL(`/fa/404?original=${encodeURIComponent(pathname)}`, request.url));
+  // اجازه بده این‌ها رد بشن
+  if (
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon.ico") ||
+    pathname.startsWith("/images") ||
+    pathname.startsWith("/robots.txt") ||
+    pathname.startsWith("/sitemap")
+  ) {
+    return NextResponse.next();
   }
 
-  // استخراج locale از path
-  const locale = pathname.split('/')[1];
-  
-  // چک کردن اینکه آیا locale معتبر است
-  if (!supportedLocales.includes(locale)) {
-    return NextResponse.redirect(new URL('/fa/404', request.url));
+  // آیا مسیر با locale شروع میشه؟
+  const hasLocale = supportedLocales.some(
+    (loc) => pathname === `/${loc}` || pathname.startsWith(`/${loc}/`)
+  );
+
+  // اگر locale نداشت:
+  if (!hasLocale) {
+    // روت سایت بره روی /fa
+    if (pathname === "/") {
+      return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
+    }
+    // بقیه مسیرها: 404 فارسی
+    return NextResponse.redirect(
+      new URL(`/${defaultLocale}/404?original=${encodeURIComponent(pathname)}`, request.url)
+    );
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next)
-    '/((?!_next|api|favicon.ico|.*\\..*$).*)',
-  ],
+  matcher: ["/((?!_next|api|favicon.ico).*)"],
 };
+
+

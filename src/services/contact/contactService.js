@@ -7,8 +7,7 @@ import { API_BASE_URL } from "../../app/[locale]/api/config";
 export async function getContactPageData(locale = "fa") {
   try {
     const res = await fetch(`${API_BASE_URL}/api/contact/?lang=${locale}`, {
-      method: "GET",
-      cache: "no-store",
+      next: { revalidate: 86400 }, // 24h
     });
 
     if (!res.ok) throw new Error(`GET /contact failed with ${res.status}`);

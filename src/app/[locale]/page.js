@@ -1,5 +1,5 @@
 // src/app/[locale]/page.js
-
+export const revalidate = 300;
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
 import PromoBanner from "../../components/home/PromoBanner";
