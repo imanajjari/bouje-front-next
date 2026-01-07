@@ -173,8 +173,8 @@ export default function ClientPage() {
       <main className="bg-white text-black font-sans min-h-screen">
         <HeroBanner
           imageSrc={safeStr(hero?.background || hero?.image || "")}
-          title={safeStr(hero?.title || tt("hero.title", ""))}
-          description={safeStr(hero?.subtitle || tt("hero.subtitle", ""))}
+          title={safeStr(hero?.title || "")}
+          description={safeStr(hero?.subtitle || "")}
           fallbackColor="#FFFFFF"
         />
 
@@ -223,7 +223,7 @@ export default function ClientPage() {
         {/* MAP (SAFE) */}
         {hasEmbed ? (
           <section className="my-10 px-4 md:px-10 flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold mb-4">{tt("map.title", "Map")}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{tt("OurLocation", "Map")}</h2>
             <MapEmbed embedCode={embedCode} />
           </section>
         ) : null}
@@ -300,7 +300,7 @@ export default function ClientPage() {
               viewport={{ once: true }}
               className="text-center text-3xl font-bold mb-12"
             >
-              {tt("ourWorkingHours", "Working hours")}
+              {tt("OurWorkingHours", "Working hours")}
             </motion.h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../app/[locale]/api/config";
 export async function getAboutPageData(locale = "fa") {
   try {
     const res = await fetch(`${API_BASE_URL}/api/about/?lang=${locale}`, {
-      next: { revalidate: 86400 }, // 24h
+      next: { revalidate: 1 }, // 24h
     });
 
     if (!res.ok) throw new Error(`Fetch error: ${res.status}`);

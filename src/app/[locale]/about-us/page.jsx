@@ -63,7 +63,9 @@ export default async function AboutPage(context) {
         {(team_members.length > 0 || team_footer) && (
           <TeamSection members={team_members} footer={team_footer} />
         )}
+        {/*
         <ContactSection />
+        */}
       </main>
 
       <Footer />
