@@ -7,6 +7,7 @@ export default function ServiceCard({ item, locale }) {
 
   return (
     <div className="h-full">
+      
       <Link href={`/${locale}${item.ctaHref}`} className="block h-full">
         <div className="h-full flex flex-col items-center text-center">
     <div className="w-full aspect-[4/5] overflow-hidden rounded">
@@ -36,7 +37,7 @@ export default function ServiceCard({ item, locale }) {
             {item.title}
           </h3>
 
-          <p className="mt-2 text-sm text-gray-700 line-clamp-2 min-h-[2.5rem]">
+          <p className="mt-2 text-sm text-gray-700 line-clamp-2 min-h-[2.5rem] max-w-full overflow-hidden break-words">
             {item.description}
           </p>
 
@@ -45,6 +46,7 @@ export default function ServiceCard({ item, locale }) {
           </p>
         </div>
       </Link>
+
     </div>
   );
 }

@@ -3,16 +3,16 @@
 
 import { Toaster } from 'sonner';
 import QueryProvider from '../../lib/providers/QueryProvider';
-import { AuthProvider } from '../../context/AuthContext';
+// import { AuthProvider } from '../../context/AuthContext';
 
 
 export default function ClientProviders({ children }) {
   return (
     <QueryProvider>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         {children}
         <Toaster richColors position="top-center" />
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </QueryProvider>
   );
 }

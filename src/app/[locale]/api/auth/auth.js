@@ -10,7 +10,7 @@ import { TokenStorage } from "../../../../services/storage/tokenStorage";
 
 // مرحله ۱: درخواست ارسال کد
 export const requestPhoneCode = async (phone_number) => {
-  const response = await fetch(`${API_BASE_URL}/api/auto_register_or_login/`, {
+  const response = await fetch(`${API_BASE_URL}/api/auth/request-otp/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const requestPhoneCode = async (phone_number) => {
 
 // مرحله ۲: ارسال کد تایید و دریافت توکن
 export const verifyPhoneCode = async (phone_number, code) => {
-  const response = await fetch(`${API_BASE_URL}/api/verify_login_or_register/`, {
+  const response = await fetch(`${API_BASE_URL}/api/auth/verify-otp/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -97,37 +97,46 @@ export const refreshToken = async () => {
     throw new Error("No refresh token");
   }
 
-  const url = `${API_BASE_URL}/token/refresh/`;
+  // ✅ اصلاح endpoint
+  const url = `${API_BASE_URL}/api/token/refresh/`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({ refresh: refreshToken }),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ refresh: refreshToken }),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("🔄 Refresh token failed:", errorText);
+      TokenStorage.clearTokens(); // پاک کردن توکن‌های نامعتبر
+      throw new Error("Refresh token expired");
+    }
+
+    const data = await response.json();
+    
+    if (data.access) {
+      TokenStorage.setTokens(data.access, refreshToken);
+      return data.access;
+    }
+
+    throw new Error("No access token in refresh response");
+
+  } catch (error) {
+    console.error("🔄 Refresh error:", error);
     TokenStorage.clearTokens();
-    throw new Error("Refresh token expired or invalid: " + errorText);
+    throw error;
   }
-
-  const data = await response.json();
-
-  if (data.access && data.refresh) {
-    TokenStorage.setTokens(data.access, data.refresh);
-  } else if (data.access) {
-    TokenStorage.setTokens(data.access, refreshToken);
-  }
-
-  return data.access;
 };
 
 
+
 export const getProfile = async () => {
-  const url = `${API_BASE_URL}/api/profile/`;
+  const url = `${API_BASE_URL}/api/auth/me/`;
 
   try {
     const response = await authFetch(url, {
@@ -149,7 +158,7 @@ export const getProfile = async () => {
 };
 
 export const updateUserProfile = async (data) => {
-  const response = await authFetch(`${API_BASE_URL}/api/profile/`, {
+  const response = await authFetch(`${API_BASE_URL}/api/auth/me/`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
@@ -167,33 +176,48 @@ export const updateUserProfile = async (data) => {
 export const authFetch = async (url, options = {}) => {
   let accessToken = TokenStorage.getAccessToken();
 
+  if (!accessToken) {
+    throw new Error("No access token");
+  }
+
   const makeRequest = async (token) => {
-    const mergedOptions = {
+    const headers = {
+      ...(options.headers || {}),
+      "Authorization": `Bearer ${token}`,
+      "Accept": "application/json",
+    };
+
+    // فقط اگر body داریم Content-Type اضافه کن
+    if (options.body) {
+      headers["Content-Type"] = "application/json";
+    }
+
+    return fetch(url, {
       ...options,
-      headers: {
-        ...(options.headers || {}),
-        "Authorization": `Bearer ${token}`,
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
+      headers,
       credentials: "same-origin",
       mode: "cors",
-    };
-    return fetch(url, mergedOptions);
+    });
   };
 
   let response = await makeRequest(accessToken);
+  
+  // 401 → تلاش برای refresh
   if (response.status === 401) {
     try {
+      console.log("🔄 Refreshing token...");
       accessToken = await refreshToken();
       response = await makeRequest(accessToken);
-    } catch (err) {
-      throw new Error("Unauthorized and refresh token failed");
+    } catch (refreshError) {
+      console.error("🔄 Refresh failed:", refreshError);
+      TokenStorage.clearTokens();
+      throw new Error("Session expired. Please login again.");
     }
   }
 
   return response;
 };
+
 
 
 export const logoutUserWithBlacklist = async (router, locale = "") => {

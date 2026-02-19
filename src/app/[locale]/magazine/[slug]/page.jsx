@@ -226,7 +226,7 @@ export default async function MagazineDetailPage(context) {
         </header>
 
         {/* Featured Image */}
-        <div className="relative w-full h-64 md:h-96 lg:h-[500px] mb-8 rounded-lg overflow-hidden shadow-lg">
+        {/* <div className="relative w-full h-64 md:h-96 lg:h-[500px] mb-8  overflow-hidden shadow-lg">
           <Image
             src={article.featuredImage}
             alt={article.title}
@@ -235,7 +235,17 @@ export default async function MagazineDetailPage(context) {
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
           />
-        </div>
+        </div> */}
+
+<div className="relative w-full aspect-video mb-8 bg-black/5 rounded-lg overflow-hidden">
+  <Image
+    src={article.featuredImage}
+    alt={article.title}
+    fill
+    className="object-contain"
+  />
+</div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
@@ -275,7 +285,8 @@ export default async function MagazineDetailPage(context) {
             )}
 
             {/* Comment Section */}
-            <CommentSection articleId={article.id} locale={params.locale} />
+            {/* TODO:DisComment of this components */}
+            {/* <CommentSection articleId={article.id} locale={params.locale} /> */}
           </div>
 
           {/* Sidebar */}
