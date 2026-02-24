@@ -122,7 +122,7 @@ export default async function MagazinePage(context) {
           </section>
         ))}
 
-        <CategoryList categories={Categories} locale={locale} title={t('topics')} />
+        <CategoryList categories={Categories} locale={locale} title={t('topics')} baseUrl={'magazine/'}/>
 
         {!query && (
           <MustReadSection title={t("MustRead")} items={mustReadItems} />

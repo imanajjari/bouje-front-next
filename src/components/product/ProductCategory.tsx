@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Minus, Search } from "lucide-react";
 
-export default function CategoryList({ categories = [], locale = "fa" ,title="Collections"}) {
+export default function CategoryList({ categories = [], locale = "fa" ,title="Collections", baseUrl='products/'}) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -87,7 +87,7 @@ export default function CategoryList({ categories = [], locale = "fa" ,title="Co
                 onMouseLeave={() => setHoveredCategory(null)}
               >
                 <Link
-                  href={`/${locale}/products/category/${category.slug}`}
+                  href={`/${locale}/${baseUrl}category/${category.slug}`}
                   className="block px-8 py-12 h-full transition-all duration-500 hover:bg-gray-50 relative overflow-hidden"
                 >
                   {/* Luxury Number Badge */}

@@ -93,15 +93,19 @@ export default async function CategoryPage({ params }) {
       <Header logoAnimation={false} iconColor="#000000" stickOnScrollOnly={true} />
 
       {/* هدر کتگوری با تصویر و نام */}
-      <HeroBanner
+      {/* <HeroBanner
   imageSrc={category?.image || "/images/fallback.jpg"}
   fallbackColor="#FF0000FF"
   title={category?.name || `دسته ${slug}`}
   description={ ""}
-/>
+/> */}
 
 
 <main className="max-w-6xl mx-auto px-4 pb-8 pt-10" aria-labelledby="category-heading">
+  {/* عنوان کتگوری (اختیاری) */}
+        {category.name && (
+          <h1 className="mb-6 text-gray-800 text-2xl leading-relaxed">{category.name}</h1>
+        )}
         {/* توضیح کتگوری (اختیاری) */}
         {category.description && (
           <p className="mb-6 text-gray-600 leading-relaxed">{category.description}</p>

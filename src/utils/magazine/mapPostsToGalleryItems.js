@@ -6,7 +6,7 @@ export function mapPostsToGalleryItems(posts) {
       mediaType: post.file ? 'video' : 'image',
       mediaSrc:  post.media,
       title: post.title,
-      description: post.content.slice(0, 100), // خلاصه محتوا
+      summary: post.summary, // خلاصه محتوا
       ctaText: 'مطالعه بیشتر',
       ctaHref: `/magazine/${post.slug}`,
     }));
