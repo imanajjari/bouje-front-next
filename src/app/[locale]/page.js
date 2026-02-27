@@ -122,16 +122,28 @@ export default async function Home(context) {
 
       {/* Hero */}
       <section className="relative w-full h-[100vh]">
-        {hero.image && (
-          <Image
-            src={hero.image}
-            alt={t("hero-alt") || "بنر اصلی"}
-            fill
-            className="object-cover bg-black"
-            priority
-          />
-        )}
-        {(hero.title || hero.link) && (
+          {/* Desktop */}
+          {hero.image && (
+            <Image
+              src={hero.image}
+              alt={t("hero-alt") || "بنر اصلی"}
+              fill
+              priority
+              className="hidden md:block object-cover bg-black"
+            />
+          )}
+
+          {/* Mobile & Tablet */}
+          {hero.mobile && (
+            <Image
+              src={hero.mobile}
+              alt={t("hero-alt") || "بنر اصلی"}
+              fill
+              priority
+              className="block md:hidden object-cover bg-black"
+            />
+          )}
+                {(hero.title || hero.link) && (
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center space-y-10">
             {hero.title && (
               <h1 className="text-white text-2xl md:text-4xl font-bold drop-shadow-lg">

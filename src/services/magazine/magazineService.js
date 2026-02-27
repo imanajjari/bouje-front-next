@@ -46,7 +46,7 @@ export async function fetchBlogPosts(params = {}) {
   const query = new URLSearchParams(params);
 
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/posts/` +
+  const url = `${API_BASE_URL}/api/blog/posts/` +
     (query.toString() ? "?" + query.toString() : "");
 
   return request(url, cacheTime("blogPosts"));
@@ -54,7 +54,7 @@ export async function fetchBlogPosts(params = {}) {
 
 export async function fetchBlogPostBySlug(slug) {
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/posts/${slug}/`;
+  const url = `${API_BASE_URL}/api/blog/posts/${slug}/`;
   return request(url, cacheTime("blogPostDetail"));
 }
 
@@ -72,19 +72,19 @@ export async function fetchBlogPostsByCategory(category) {
 
 export async function fetchBlogCategories() {
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/categories/`;
+  const url = `${API_BASE_URL}/api/blog/categories/`;
   return request(url, cacheTime("blogCategories"));
 }
 
 export async function fetchMasterBlogCategories() {
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/categories/?master=true`;
+  const url = `${API_BASE_URL}/api/blog/categories/?master=true`;
   return request(url, cacheTime("masterCategories"));
 }
 
 export async function fetchBlogCollections() {
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/collections/`;
+  const url = `${API_BASE_URL}/api/blog/collections/`;
   return request(url, cacheTime("blogCollections"));
 }
 
@@ -94,7 +94,7 @@ export async function fetchBlogCollections() {
 
 export async function fetchPopularBlogData() {
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/popular/`;
+  const url = `${API_BASE_URL}/api/blog/popular/`;
   return request(url, cacheTime("popularBlogData"));
 }
 
@@ -102,7 +102,7 @@ export async function searchBlogPosts(params) {
   const query = new URLSearchParams(params);
 
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/search/` +
+  const url = `${API_BASE_URL}/api/blog/search/` +
     (query.toString() ? "?" + query.toString() : "");
 
   return request(url, cacheTime("blogSearch"));
@@ -114,7 +114,7 @@ export async function searchBlogPosts(params) {
 
 export async function subscribeToNewsletter(email) {
   // تغییر: حذف اسلش قبل از api
-  const url = `${API_BASE_URL}api/blog/subscribe/`;
+  const url = `${API_BASE_URL}/api/blog/subscribe/`;
 
   const res = await fetch(url, {
     method: "POST",
